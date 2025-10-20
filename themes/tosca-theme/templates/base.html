@@ -1,0 +1,40 @@
+{% import "macros/head.html" as head_macro %}
+{% import "macros/header.html" as header_macro %}
+{% import "macros/footer.html" as footer_macro %}
+
+{% set title = config.title %}
+{%- if page is defined and page.title -%}
+  {% set title = page.title %}
+{%- elif section is defined and section.title -%}
+  {% set title = section.title %}
+{%- endif -%}
+
+{% set meta_description = config.description %}
+{%- if page is defined and page.description -%}
+  {% set meta_description = page.description %}
+{%- elif section is defined and section.description -%}
+  {% set meta_description = section.description %}
+{%- endif -%}
+
+{% set permalink = "" %}
+{%- if page is defined and page.permalink -%}
+  {% set permalink = page.permalink %}
+{%- elif section is defined and section.permalink -%}
+  {% set permalink = section.permalink %}
+{%- endif -%}
+
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  {{ head_macro::head(title=title, meta_description=meta_description, current_url=config.base_url) }}
+</head>
+<body>
+  {{ header_macro::header(config=config, lang=lang, permalink=permalink) }}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {{ footer_macro::footer(config=config, lang=lang) }}
+</body>
+</html>

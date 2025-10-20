@@ -1,0 +1,74 @@
+{% import "macros/head.html" as head_macro %}
+{% import "macros/header.html" as header_macro %}
+{% import "macros/footer.html" as footer_macro %}
+
+{%- set not_found_title = "404" -%}
+{%- set not_found_url = config.base_url ~ "/404.html" -%}
+
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  {{ head_macro::head(title=not_found_title, meta_description=not_found_title, current_url=not_found_url) }}
+</head>
+<body>
+  {{ header_macro::header(config=config, lang=lang, permalink="") }}
+
+  <main>
+    <section class="error-section">
+        <div class="container">
+            <h1 class="error-title">404</h1>
+            <div class="button-container">
+                {%- for language in config.extra.404_languages %}
+                <button class="button button-primary button-medium-large modal"
+                        data-description="{{ language.description}}"
+                        data-index="{{ language.index | safe }}"
+                        data-button="{{ language.goto_button }}">
+                    {{ language.button }}
+                </button>
+                {%- endfor %}
+            </div>
+            <div class="info-box" data-id=0>
+                <p></p>
+                <a class="button button-primary button-same-width"></a>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  {{ footer_macro::footer(config=config, lang=lang) }}
+
+  <script type="module">
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal, modalIndex) => {
+            modal.addEventListener("click", () => {
+                const id = String(modalIndex);
+
+                const description = modal.dataset.description;
+                const index = modal.dataset.index;
+                const button = modal.dataset.button;
+
+                const infoBox = modal.parentElement.parentElement.querySelector('.info-box');
+                const isVisible = infoBox.classList.contains('show');
+
+                const p = infoBox.querySelector('p');
+                const link = infoBox.querySelector('a');
+
+                p.textContent = description;
+
+                link.href = index;
+                link.textContent = button;
+
+                if (!isVisible) {
+                    infoBox.classList.add('show');
+                }
+
+                if (isVisible && infoBox.dataset.id === id) {
+                    infoBox.classList.remove('show');
+                } else {
+                    infoBox.dataset.id = id;
+                }
+            });
+        });
+  </script>
+</body>
+</html>

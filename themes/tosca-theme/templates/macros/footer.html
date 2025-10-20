@@ -1,0 +1,16 @@
+{% import "macros/general.html" as general %}
+
+{%- macro footer(config, lang) -%}
+
+{%- set map = config.extra.copyright_map -%}
+{%- set default_lang = config.default_language -%}
+{%- set copyright = general::parse_lang_map(map=map, default_lang=default_lang, lang=lang) -%}
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-info">
+        &copy; {{ now() | date(format="%Y") }} {{ config.title }}. {{ copyright | trim }}
+      </div>
+    </div>
+  </footer>
+{%- endmacro footer -%}

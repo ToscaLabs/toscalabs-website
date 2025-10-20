@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{%- block content -%}
+
+    {% if lang == "it" -%}
+        {% set months = [
+            "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
+            "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"
+           ]
+        %}
+    {%- endif -%}
+
+    <article class="post">
+      <div class="container post-body">
+          <div class="post-content">
+              <h1 class="post-title">{{ page.title | markdown(inline=true) | safe }}</h1>
+              <div class="post-metadata">
+                  <span>
+                    {% if lang == "it" -%}
+                        {% set month_index = page.date | date(format="%m") | int - 1 %}
+                        {{ page.date | date(format="%d") }}
+                        {{ months[month_index] }}
+                        {{ page.date | date(format="%Y") }}
+                    {%- else -%}
+                        {{ page.date | date(format="%B %d, %Y") }}
+                    {%- endif -%}
+                  </span>
+              </div>
+              {{ page.content | markdown | safe }}
+
+              {%- if page.extra.languages.translations -%}
+              <hr>
+              <p class="post-other-languages">
+                  <em>
+                  {{ page.extra.languages.message }}
+                  {%- for t in page.extra.languages.translations -%}
+                  <a href="{{ t.path | safe }}">{{ t.name }}</a>
+                  {%- if not loop.last -%} – {%- else -%}. {%- endif -%}
+                  {%- endfor -%}
+                  </em>
+              </p>
+              {%- endif -%}
+
+              <hr>
+              <p class="post-footer">
+                  {% set section = get_section(path=page.ancestors | last) %}
+                  <a href="{{ section.permalink | safe }}">← {{ section.extra.back_to_blog }}</a>
+              </p>
+          </div>
+      </div>
+    </article>
+ {%- endblock %}

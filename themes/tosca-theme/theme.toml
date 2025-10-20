@@ -1,0 +1,9 @@
+name = "tosca-theme"
+description = "A simple theme for ToscaLab"
+tags = ["documentation", "multilingual", "responsive", "minimal"]
+license = "MIT"
+homepage = "https://github.com/ToscaLab/tosca-site"
+# The minimum version of Zola required
+min_version = "0.21.0"
+
+[extra]
