@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{%- block content -%}
+    <section class="hero text-centered">
+        <div class="container">
+            <h1 class="hero-title">
+                <span class="hero-highlight">
+                    {{ section.extra.hero.title.highlight }}
+                </span>
+                {{ section.extra.hero.title.first }}
+            </h1>
+            <p>{{ section.extra.hero.subtitle }}</p>
+        </div>
+    </section>
+
+    <section class="about-toscalabs">
+        <div class="container">
+            <h2 class="section-title">{{ section.extra.about.title }}</h2>
+            <div class="about-toscalabs-panels">
+                <div class="toscalabs-panel">
+                    {{ section.extra.about.paragraph | markdown | trim | safe }}
+                </div>
+                <div class="motto-panel">
+                    <h3 class="motto">
+                        {{ section.extra.about.motto | trim | safe }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FIXME: INCLUDE THIS SECTION AGAIN WHEN THE LOGO IS READY
+    <section class="about-toscalabs-name">
+        <div class="container">
+            <h2 class="section-title">{{ section.extra.name.title }}</h2>
+            <div class="about-toscalabs-panels">
+                <div class="image-panel">
+                    <img src="{{ get_url(path='img/tosca-name.png') | safe }}" alt="Tosca">
+                </div>
+                <div class="name-panel">
+                    {{ section.extra.name.paragraph | markdown | trim | safe }}
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+
+    <section class="about-method">
+        <div class="container">
+            <h2 class="section-title">{{ section.extra.method.title }}</h2>
+            <div class="about-cards-grid">
+                {%- for card in section.extra.cards %}
+                <div class="info-card card-odd-color">
+                    <h3>{{ card.title }}</h3>
+                    {{ card.description | markdown | trim | safe }}
+                </div>
+                {%- endfor %}
+            </div>
+        </div>
+    </section>
+{%- endblock %}

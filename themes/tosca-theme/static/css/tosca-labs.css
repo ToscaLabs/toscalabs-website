@@ -1,0 +1,758 @@
+:root {
+    /* == Spacing == */
+    --max-width: 1200px; /* A size that allows the page content to be readable and centered even on wider screens */
+    --horizontally-centered-margins: 0 auto; /* Centers the container horizontally */
+    --padding-edges: 0 20px; /* Keeps the content from touching the browser edges on small screens */
+
+    /* == Variables related to header size and used to compute menu top position on mobile == */
+    --header-height: 60px; /* Header height */
+    --header-border-size: 2px; /* Header border size */
+
+    /* == Variables related to navbar == */
+    --logo-height: 40px; /* Logo height size */
+    --navbar-vertical-padding: 8px; /* Navbar vertical padding */
+    --menu-voices-gap: 32px; /* Gap between menu voices */
+    --menu-offset: 8px; /* Slight offset to distance all voices from controllers */
+
+    /* == Colors == */
+    --body-background-color: rgb(255, 255, 255); /* Body background */
+    --menu-background-color: rgb(165, 219, 165); /* Menu background */
+    --menu-background-mobile-color: rgb(255, 255, 255); /* Menu background on mobile */
+    --section-odd-background-color: rgb(255, 255, 255); /* Section odd background color */
+    --section-even-background-color: rgb(239, 243, 239); /* Section even background color */
+    --card-odd-background-color: rgb(249, 249, 249); /* Card odd background color */
+    --card-even-background-color: rgb(255, 255, 255); /* Card even background color */
+    --footer-background-color: rgb(16, 32, 56); /* Footer background color */
+
+    --body-text-color: rgb(85, 85, 85); /* Body text color */
+    --menu-text-color: rgb(30, 41, 57); /* Menu text color */
+    --card-text-color: rgb(85, 85, 85); /* Card text color */
+    --motto-text-color: rgb(241, 139, 106); /* Motto text color */
+    --footer-text-color: rgb(204, 210, 213); /* Footer text color */
+
+    --header-border-color: rgb(229, 229, 229); /* Header border */
+    --grid-border-even-color: rgb(227, 223, 231); /* Grid border color on even sections */
+
+    --card-shadow: rgba(20, 20, 20, 0.2); /* Card shadow */
+    --image-shadow: rgb(107, 114, 128, 0.6); /* About image shadow */
+    --envelope-svg-color: rgb(16, 40, 56); /* Envelope svg color */
+}
+
+/* Reset rules applied to all page elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--body-background-color);
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--body-text-color);
+}
+
+section {
+    padding: 80px 0;
+}
+
+/* Spacing classes */
+.text-centered {
+    text-align: center;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: var(--horizontally-centered-margins);
+    padding: var(--padding-edges);
+}
+
+.hero {
+    padding: 120px 0 40px;
+    background: var(--section-odd-background-color);
+    color: var(--menu-text-color);
+}
+
+.hero p {
+    margin-bottom: 1.8rem;
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.hero-title {
+    margin-bottom: 1.5rem;
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.hero-highlight {
+    color: var(--menu-background-color);
+}
+
+.section-title {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--menu-text-color);
+}
+
+.error-title {
+    font-size: 16rem;
+    font-weight: bold;
+    line-height: 1.3;
+    color: var(--motto-text-color);
+}
+
+.unique-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--header-height);
+    border-bottom: var(--header-border-size) solid var(--header-border-color);
+    background: var(--menu-background-color);
+    z-index: 1000;
+}
+
+.navbar {
+    padding: var(--navbar-vertical-padding) 0;
+}
+
+.nav-container {
+    display: flex;
+    /* The horizontal distribution of the flex items.
+       i.e. |Item1       Item2       Item3|
+    */
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-edges);
+}
+
+.nav-left .logo {
+    max-width: 100%;
+    width: auto;
+    height: var(--logo-height);
+    /* Force the logo to align at the top of its parent container <a> */
+    vertical-align: top;
+    transition: opacity .3s ease;
+}
+
+.nav-left .logo:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav-voices {
+    display: flex;
+    gap: var(--menu-voices-gap);
+    list-style: none;
+    margin-right: calc(var(--menu-voices-gap) + var(--menu-offset));
+}
+
+.nav-link {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--menu-text-color);
+    transition: transform .2s ease;
+}
+
+.nav-link:hover {
+    transform: scale(1.1);
+}
+
+.nav-link-selected {
+    color: var(--menu-background-mobile-color);
+    filter: contrast(1.5);
+    transform: none !important;
+}
+
+.nav-controllers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: calc(var(--menu-voices-gap) / 2);
+}
+
+.github-mark {
+    display: block;
+    width: 21px;
+    height: 21px;
+    /* Setting 50% border-radius makes the element a perfect circle
+       since its width and height are equal
+    */
+    border-radius: 50%;
+    color: var(--menu-text-color);
+    transition: transform .2s ease;
+}
+
+.github-mark:hover {
+    transform: scale(1.2);
+}
+
+.multilang-link {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--menu-text-color);
+    transition: transform .2s ease;
+}
+
+.multilang-link:hover {
+    transform: scale(1.2);
+}
+
+.burger-menu {
+    display: none;
+}
+
+/* Button */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /* Do not allow buttons to wrap to the next line on smaller screens */
+    flex-wrap: no-wrap;
+}
+
+.button-same-width {
+    width: 200px;
+}
+
+.button {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: opacity .2s ease;
+}
+
+.button-primary {
+    background-color: var(--menu-background-color);
+    color: var(--menu-text-color);
+}
+
+.button-primary:hover {
+    opacity: 0.8;
+}
+
+/* Cards */
+.cards {
+    background-color: var(--section-even-background-color);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card-odd-color {
+    background-color: var(--card-odd-background-color);
+    border: 2px solid var(--grid-border-even-color);
+    transition: all .1s ease;
+}
+
+.card-odd-color:hover {
+    box-shadow: 0 20px 20px rgba(10, 10, 10, 0.2);
+}
+
+.card-even-color {
+    background-color: var(--card-even-background-color);
+    border: 1px solid var(--grid-border-even-color);
+    transition: all .2s ease;
+}
+
+.card-even-color:hover {
+    box-shadow: 0 20px 20px var(--card-shadow);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 2rem;
+    border-radius: 30px;
+}
+
+.card h3 {
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--menu-text-color);
+}
+
+.card p {
+    width: 100%;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+.card a {
+    text-decoration: none;
+    color: var(--menu-background-color);
+    filter: brightness(0.95);
+    font-weight: 600;
+}
+
+.card a:hover {
+    filter: brightness(1);
+}
+
+.card-icon {
+    width: 100%;
+    height: 3rem;
+    margin-bottom: 1rem;
+    /* A workaround to make the leaf appear horizontally centered */
+    padding-left: 1rem;
+    color: var(--menu-background-color);
+}
+
+.info-card {
+    padding: 2.5rem 1.5rem;
+    border-radius: 30px;
+}
+
+.info-card h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--menu-text-color);
+}
+
+.info-card p {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+.info-card a {
+    text-decoration: none;
+    color: var(--menu-background-color);
+    filter: brightness(0.95);
+    font-weight: 500;
+}
+
+.info-card a:hover {
+    filter: brightness(1);
+}
+
+/* Contacts */
+.contacts {
+    background-color: var(--section-odd-background-color);
+}
+
+.contacts-info {
+    margin: var(--horizontally-centered-margins) 30px;
+    text-align: center;
+}
+
+.email-svg {
+    display: block;
+    width: 100%;
+    height: 3.4rem;
+    margin: var(--horizontally-centered-margins) 12px;
+    color: var(--envelope-svg-color);
+}
+
+.email-text {
+   margin: var(--horizontally-centered-margins) 30px;
+   font-weight: bold;
+   color: var(--menu-text-color);
+}
+
+/* About page */
+.about-toscalabs {
+    background-color: var(--section-even-background-color);
+}
+
+.about-toscalabs-name {
+    background-color: var(--section-odd-background-color);
+}
+
+.about-toscalabs-panels {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.about-toscalabs-panels p {
+    line-height: 1.75rem;
+}
+
+.toscalabs-panel {
+    width: 50vw;
+    margin: auto 2rem;
+}
+
+.toscalabs-panel p {
+    font-size: 1.2rem;
+    margin-bottom: 1.8rem;
+}
+
+.motto-panel {
+    width: 50vw;
+    margin: 4rem auto auto;
+}
+
+.motto {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    letter-spacing: 0.02em;
+    font-size: calc(1.3rem + 0.5vw);
+    font-weight: bold;
+    font-style: italic;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--motto-text-color);
+    opacity: 0.8;
+}
+
+.image-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: auto 2rem;
+}
+
+.image-panel img {
+    width: 420px;
+    height: 420px;
+    box-shadow: 0 10px 15px -3px var(--image-shadow), 0 4px 6px -4px var(--image-shadow);
+}
+
+.name-panel {
+    width: 50%;
+    margin: auto 2rem;
+}
+
+.name-panel p {
+    width: 100%;
+    margin-bottom: 1.4rem;
+}
+
+.about-method {
+    background-color: var(--section-odd-background-color);
+}
+
+.about-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* Tosca Page */
+.tosca-demo {
+    background-color: var(--section-even-background-color);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    margin-bottom: 1rem;
+    /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
+    overflow: hidden;
+}
+
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.demo-description {
+    margin-bottom: 1.8rem;
+    font-size: 1.4rem;
+    opacity: 0.8;
+}
+
+.tosca-features {
+    background-color: var(--section-even-background-color);
+}
+
+.tosca-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.tosca-contacts {
+    background-color: var(--section-odd-background-color);
+}
+
+.contacts-subtitle {
+    margin-bottom: 1.8rem;
+    font-size: 1.4rem;
+    opacity: 0.7;
+}
+
+/* Footer */
+.footer {
+    padding: 3rem 0 1rem;
+    background-color: var(--footer-background-color);
+}
+
+.footer-info {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    font-weight: 500;
+    color: var(--footer-text-color);
+}
+
+/* Large desktop screens */
+@media screen and (min-width: 2000px) {
+    .motto {
+        font-size: 1.8rem;
+    }
+}
+
+
+/* Large tablets in landscape mode */
+@media screen and (max-width: 1024px) {
+    .about-toscalabs-panels {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .motto-panel {
+        margin-top: 2rem;
+        width: 100%;
+    }
+
+    .motto {
+        font-size: calc(1.5rem + 0.5vw);
+    }
+}
+
+/* Small tablets in portrait mode */
+@media screen and (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: calc(var(--header-height) + var(--header-border-size));
+        left: -100%;
+        right: 0;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--menu-voices-gap);
+        background-color: var(--menu-background-mobile-color);
+        /* A filter to hide the content behind */
+        backdrop-filter: blur(20px);
+        /* Safari version of the filter */
+        -webkit-backdrop-filter: blur(20px);
+        text-align: center;
+        visibility: hidden;
+        opacity: 0;
+        z-index: 1000;
+        transition: left 0.25s ease, opacity 0.25s ease;
+    }
+
+    body.active {
+        overflow: hidden;
+    }
+
+    .nav-menu.active {
+        left: 0;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .nav-voices {
+        width: 100%;
+        margin-right: 0;
+        flex-direction: column;
+    }
+
+    .nav-controllers {
+        width: 100%;
+        justify-content: center;
+        padding-right: calc(var(--menu-voices-gap) / 8);
+    }
+
+    .nav-link,
+    .multilang-link,
+    .github-mark {
+        transition: none !important;
+    }
+
+    .nav-link:hover,
+    .multilang-link:hover,
+    .github-mark:hover {
+        transform: none !important;
+    }
+
+    .nav-link-selected {
+        color: var(--menu-background-color);
+        filter: contrast(0.9);
+    }
+
+    .burger-menu {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 23px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .burger-menu .bar {
+        position: absolute;
+        width: 30px;
+        height: 3px;
+        background-color: var(--menu-text-color);
+    }
+
+    .burger-menu .bar-1 {
+        top: 0;
+    }
+
+    .burger-menu .bar-2 {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .burger-menu .bar-3 {
+        bottom: 0;
+    }
+
+    .burger-menu.active .bar-1 {
+        transform: rotate(45deg);
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+    .burger-menu.active .bar-2 {
+        opacity: 0;
+    }
+
+    .burger-menu.active .bar-3 {
+        transform: rotate(-45deg);
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .error-title {
+        font-size: 12rem;
+    }
+
+    .motto-panel {
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .motto {
+        font-size: calc(1.4rem + 0.5vw);
+    }
+
+    .button-container {
+        padding: 0 3rem;
+    }
+
+    .button {
+        width: 250px;
+    }
+
+    .about-toscalabs-panels {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .about-toscalabs-panels p {
+        font-size: 1.2rem;
+    }
+
+    .toscalabs-panel {
+        padding-bottom: 1.5rem;
+        width: 100%;
+    }
+
+    .image-panel {
+        width: 100%;
+        margin: 0 0 1.5rem;
+    }
+
+    .name-panel {
+        width: 100%;
+    }
+
+    .cards-grid,
+    .about-cards-grid,
+    .tosca-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .demo-description {
+        padding: 0 1rem;
+        font-size: 1.3rem;
+    }
+}
+
+/* Only mobile */
+@media screen and (max-width: 480px) {
+    .hero-title,
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .motto {
+        font-size: calc(1.4rem + 0.5vw);
+    }
+}

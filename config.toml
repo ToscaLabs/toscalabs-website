@@ -1,0 +1,59 @@
+# Base URL for the ToscaLabs website.
+#
+# Used to generate absolute links for the site
+base_url = "https://toscalabs.org"
+# Website title
+title = "ToscaLabs"
+# Website description
+description = "The ToscaLabs website"
+
+# Theme used for the website
+theme = "tosca-theme"
+
+# Specify the default language of the website
+default_language = "en"
+# Specify whether or not to generate RSS/Atom feeds for the website
+generate_feeds = true
+# Specify whether or not to generate a sitemap for the website
+generate_sitemap = true
+
+# Section to configure specific settings for the Italian language
+[languages.it]
+# Generate RSS/Atom feeds for the Italian version of the website
+generate_feeds = true
+# Italian website title
+title = "ToscaLabs"
+# Italian website description
+description = "Il sito di ToscaLabs"
+
+# All custom theme variables must be placed here
+[extra]
+# ToscaLabs informative email
+email = "info@toscalabs.org"
+
+# Footer copyright text
+copyright_map = { en = "All rights reserved.", it = "Tutti i diritti riservati." }
+
+# GitHub link description in different languages
+github_map = { en = "Visit ToscaLabs projects", it = "Guarda i progetti di ToscaLabs" }
+
+# GitHub link
+github_link = "https://github.com/ToscaLabs"
+
+# Menu items in English
+nav_items = [
+    { name = "Home", prefix = "", url = "/" },
+    { name = "Tosca", prefix = "",  url = "/tosca" },
+    { name = "About", prefix = "",  url = "/about" },
+    #{ name = "Blog", prefix = "",  url = "/blog" },
+    { name = "Contact Us", prefix = "", url = "/#contacts" },
+]
+
+# Menu items in Italian
+nav_items_it = [
+    { name = "Home", prefix ="/it", url = "/" },
+    { name = "Tosca", prefix = "/it", url = "/tosca" },
+    { name = "Chi Siamo", prefix = "/it", url = "/about" },
+    #{ name = "Blog", prefix = "/it",  url = "/blog" },
+    { name = "Contattaci", prefix = "/it", url = "/#contacts" },
+]

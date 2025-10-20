@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{%- block content -%}
+    <section class="hero text-centered">
+        <div class="container">
+            <h1 class="hero-title hero-highlight">
+                {{ section.extra.hero.title }}
+            </h1>
+            <p>{{ section.extra.hero.subtitle | markdown | safe }}</p>
+            <div class="button-container">
+                <a href="{{ section.extra.hero.github_button.url | safe }}" target="_blank" rel="noopener noreferrer" class="button button-primary button-same-width">
+                    {{ section.extra.hero.github_button.text }}
+                </a>
+                <a href="{{ section.extra.hero.docs_button.url | safe }}" target="_blank" rel="noopener noreferrer" class="button button-primary button-same-width">
+                    {{ section.extra.hero.docs_button.text }}
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FIXME: INTRODUCE THIS SECTION AGAIN WHEN THE VIDEO IS READY
+    <section class="tosca-demo text-centered">
+        <div class="container">
+            <h2 class="section-title">{{ section.extra.demo.title }}</h2>
+            <div class="video-container">
+                <video class="video" controls>
+                   <source src="{{ get_url(path='videos/demo_video.mp4') | safe }}" type="video/mp4">
+                      {{ section.extra.demo.not_supported_video_tag }}
+                </video>
+            </div>
+            <div class="demo-description">
+                {{ section.extra.demo.description | markdown | safe }}
+            </div>
+            <a href="{{ section.extra.demo.demo_button.url | safe }}" target="_blank" rel="noopener noreferrer" class="button button-primary button-same-width">
+                {{ section.extra.demo.demo_button.text }}
+            </a>
+        </div>
+    </section>-->
+
+    <section class="tosca-features">
+        <div class="container">
+            <h2 class="section-title">{{ section.extra.features.title }}</h2>
+            <div class="tosca-cards-grid text-centered">
+                {% for card in section.extra.cards %}
+                <div class="info-card card-even-color">
+                    <h3>{{ card.title }}</h3>
+                    {{ card.description | markdown | safe }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="tosca-contacts text-centered">
+        <div class="container">
+            <h2 class="section-title">{{ section.extra.contacts.title }}</h2>
+            <h3 class="contacts-subtitle">{{ section.extra.contacts.subtitle }}</h3>
+            <a href="mailto:{{ config.extra.email | safe }}" class="button button-primary button-same-width">
+                {{ section.extra.contacts.contact_button_text }}
+            </a>
+        </div>
+    </section>
+{%- endblock %}

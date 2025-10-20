@@ -1,0 +1,25 @@
+{% import "macros/head.html" as head_macro %}
+{% import "macros/header.html" as header_macro %}
+{% import "macros/footer.html" as footer_macro %}
+
+{%- set not_found_title = "404" -%}
+{%- set not_found_url = config.base_url ~ "/404.html" -%}
+
+<!DOCTYPE html>
+<html lang="{{ lang }}" style="background-color: #ffffff;">
+<head>
+  {{ head_macro::head(title=not_found_title, meta_description=not_found_title, current_url=not_found_url) }}
+</head>
+<body>
+  {{ header_macro::header(config=config, lang=lang, permalink="") }}
+
+  <main>
+    <section class="hero unique-section">
+    <div class="container">
+        <h1 class="error-title">404</h1>
+    </div>
+  </main>
+
+  {{ footer_macro::footer(config=config, lang=lang) }}
+</body>
+</html>
