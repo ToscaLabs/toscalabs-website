@@ -1,0 +1,12 @@
+{% macro parse_lang_map(map, default_lang, lang) %}
+
+{% set value = map[default_lang]  %}
+{% if lang and lang != default_lang %}
+    {% if map[lang] %}
+        {% set value = map[lang]  %}
+    {% endif %}
+{% endif %}
+
+{{ value }}
+
+{% endmacro parse_lang_map %}

@@ -1,0 +1,105 @@
+# Base URL for the ToscaLabs website.
+#
+# Used to generate absolute links for the site
+base_url = "https://toscalabs.org"
+# Website title
+title = "ToscaLabs"
+# Website description
+description = "The ToscaLabs website"
+
+# Theme used for the website
+theme = "tosca-theme"
+
+# Specify the default language of the website
+default_language = "en"
+# Specify whether or not to generate RSS/Atom feeds for the website
+generate_feeds = true
+# Specify whether or not to generate a sitemap for the website
+generate_sitemap = true
+
+[markdown]
+# Render emojis
+render_emoji = true
+
+# Links
+#
+# External links are to be opened in a new tab. A `rel="noopener"` will always
+# automatically be added for security reasons.
+external_links_target_blank = true
+# Set `rel="nofollow"` for all external links
+external_links_no_follow = true
+# Set `rel="noreferrer"` for all external links
+external_links_no_referrer = true
+# Set `rel="external"` for all external links
+external_links_external = true
+
+# Footnotes
+#
+# Footnotes are rendered in the GitHub-style
+# [at the bottom, with back references]
+bottom_footnotes = true
+
+# Alerts
+#
+# Support for GitHub-style alerts
+github_alerts = true
+
+[markdown.highlighting]
+# Missing highlight languages are treated as errors.
+error_on_missing_language = true
+# Use CSS classes.
+style = "inline"
+# Use dark theme to highlight code.
+theme = "github-dark"
+
+# Section to configure specific settings for the Italian language
+[languages.it]
+# Generate RSS/Atom feeds for the Italian version of the website
+generate_feeds = true
+# Italian website title
+title = "ToscaLabs"
+# Italian website description
+description = "Il sito di ToscaLabs"
+
+# All custom theme variables must be placed here
+[extra]
+# ToscaLabs informative email
+email = "info@toscalabs.org"
+
+# Footer copyright text in different languages
+copyright_map = { en = "All rights reserved.", it = "Tutti i diritti riservati." }
+
+# GitHub link description in different languages
+github_map = { en = "Visit ToscaLabs projects", it = "Guarda i progetti di ToscaLabs" }
+
+# GitHub link
+github_link = "https://github.com/ToscaLabs"
+
+# Menu items in English
+nav_items_en = [
+    { id = 0, name = "Home", prefix = "", url = "/" },
+    { id = 1, name = "Tosca", prefix = "",  url = "/tosca" },
+    { id = 2, name = "About", prefix = "",  url = "/about" },
+    { id = 3, name = "Blog", prefix = "",  url = "/blog" },
+    { id = 4, name = "Contact Us", prefix = "", url = "/#contacts" },
+]
+
+# Menu items in Italian
+nav_items_it = [
+    { id = 0, name = "Home", prefix ="/it", url = "/" },
+    { id = 1, name = "Tosca", prefix = "/it", url = "/tosca" },
+    { id = 2, name = "Chi Siamo", prefix = "/it", url = "/chi-siamo" },
+    { id = 3, name = "Blog", prefix = "/it",  url = "/blog" },
+    { id = 4, name = "Contattaci", prefix = "/it", url = "/#contatti" },
+]
+
+# Data in different languages for the 404 page
+404_languages = [
+   { index = "/", button = "English Version", description = "The requested page does not exist.", goto_button = "Back Home" },
+   { index = "/it", button = "Versione Italiana", description = "La pagina richiesta non esiste.",  goto_button = "Torna alla Home" },
+]
+
+# Taxonomies
+taxonomies = [
+  { name = "tags" }
+]
